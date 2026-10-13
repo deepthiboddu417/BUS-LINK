@@ -1,0 +1,30 @@
+{
+  "name": "buslink-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@babel/preset-react": "^7.24.1",
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "html5-qrcode": "^2.3.8",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.368.0",
+    "qrcode": "^1.5.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.22.3",
+    "selfsigned": "^5.5.0"
+  },
+  "devDependencies": {
+    "esbuild-wasm": "^0.28.2"
+  }
+}

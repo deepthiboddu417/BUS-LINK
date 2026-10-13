@@ -1,0 +1,82 @@
+# ─── Java / Maven ───────────────────────────────────────────────────────────────
+backend/target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+replay_pid*
+
+# Maven wrapper cache (keep mvnw scripts, exclude downloaded wrapper jars)
+.mvn/wrapper/maven-wrapper.jar
+
+# ─── Spring Boot ────────────────────────────────────────────────────────────────
+# The real application.properties contains secrets → NEVER commit it
+backend/src/main/resources/application.properties
+# Committed instead: application.properties.example (safe template)
+
+# ─── Node.js / React / npm ──────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# ─── Environment & Secrets ──────────────────────────────────────────────────────
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+# Keep .env.example in Git (it's a template with no real secrets)
+
+# ─── Private TLS Certificates & Keys ───────────────────────────────────────────
+frontend/.cert/
+*.pem
+*.key
+*.p12
+*.jks
+*.crt
+
+# ─── IDE & Editor ───────────────────────────────────────────────────────────────
+.idea/
+*.iml
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.settings/
+.factorypath
+
+# ─── OS Generated ───────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─── Logs & Build Artifacts ─────────────────────────────────────────────────────
+*.log
+logs/
+build/
+
+# ─── Scratch / Temporary Files ──────────────────────────────────────────────────
+scratch/

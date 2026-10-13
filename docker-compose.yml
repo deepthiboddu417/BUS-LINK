@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: buslink_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: buslink_db
+      MYSQL_ROOT_PASSWORD: root_password_here
+      MYSQL_USER: buslink_user
+      MYSQL_PASSWORD: buslink_password_here
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: buslink_backend
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/buslink_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: buslink_user
+      SPRING_DATASOURCE_PASSWORD: buslink_password_here
+      APP_JWT_SECRET: ${APP_JWT_SECRET:?APP_JWT_SECRET env variable must be set for Docker deployment}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: buslink_frontend
+    restart: always
+    ports:
+      - "5173:5173"
+    environment:
+      PORT: 5173
+      BACKEND_URL: http://backend:8080
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
